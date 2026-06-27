@@ -1,0 +1,104 @@
+run:
+  timeout: 5m
+  go: "1.25"
+
+linters:
+  enable-all: true
+  disable:
+    - exhaustruct
+    - varnamelen
+    - wrapcheck
+    - nlreturn
+    - wsl
+    - gci
+    - godox
+    - ireturn
+    - nonamedreturns
+    - tagliatelle
+    - mnd
+    - perfsprint
+    - protogetter
+    - recvcheck
+    - testpackage
+    - paralleltest
+    - tenv
+    - gochecknoglobals
+    - gosec
+
+linters-settings:
+  depguard:
+    rules:
+      Main:
+        files:
+          - "$all"
+        allow:
+          - $gostd
+          - github.com/myth-tools
+          - github.com/miekg
+          - golang.org/x
+          - github.com/charmbracelet
+          - gopkg.in
+  funlen:
+    lines: 85
+    statements: 60
+  cyclop:
+    max-complexity: 20
+  gocyclo:
+    min-complexity: 20
+  maintidx:
+    under: 20
+  gocognit:
+    min-complexity: 30
+  nestif:
+    min-complexity: 5
+  godot:
+    scope: toplevel
+  forbidigo:
+    forbid:
+      - ^println$
+      - ^print$
+      - ^\t\t\t\t\t\t\t\t\t\t$
+  gosmopolitan:
+    allow-time-local: true
+  govet:
+    enable-all: true
+    disable:
+      - fieldalignment
+  errorlint:
+    errorf: true
+    asserts: true
+    comparison: true
+  gomoddirectives:
+    replace-local: true
+    retract: false
+  stylecheck:
+    checks: ["all"]
+  decorder:
+    dec-order:
+      - type
+      - const
+      - var
+      - func
+  lll:
+    line-length: 140
+  dupl:
+    threshold: 100
+  goconst:
+    min-len: 3
+    min-occurrences: 3
+  prealloc:
+    simple: true
+    range-loops: true
+    for-loops: true
+
+output:
+  formats:
+    - format: colored-line-number
+  print-issued-lines: true
+  print-linter-name: true
+  sort-results: true
+
+issues:
+  max-issues-per-linter: 0
+  max-same-issues: 0
+  exclude-use-default: true
