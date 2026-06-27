@@ -76,16 +76,25 @@ type cliFlags struct {
 
 var defaultThreads = runtime.NumCPU() * 10
 
-func main() {
-	if version == "dev" {
-		if exe, err := os.Executable(); err == nil {
-			if bi, err := buildinfo.ReadFile(exe); err == nil {
-				if v := bi.Main.Version; v != "" && v != "(devel)" {
-					version = v
-				}
-			}
-		}
+func detectBuildVersion() {
+	if version != "dev" {
+		return
 	}
+	exe, err := os.Executable()
+	if err != nil {
+		return
+	}
+	bi, err := buildinfo.ReadFile(exe)
+	if err != nil {
+		return
+	}
+	if v := bi.Main.Version; v != "" && v != "(devel)" {
+		version = v
+	}
+}
+
+func main() {
+	detectBuildVersion()
 
 	passive.EnsureConfig("")
 
