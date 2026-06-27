@@ -2,12 +2,12 @@ package main
 
 import (
 	"context"
+	"debug/buildinfo"
 	"flag"
 	"fmt"
 	"os"
 	"path/filepath"
 	"runtime"
-	"runtime/debug"
 	"slices"
 	"strconv"
 	"strings"
@@ -78,9 +78,11 @@ var defaultThreads = runtime.NumCPU() * 10
 
 func main() {
 	if version == "dev" {
-		if info, ok := debug.ReadBuildInfo(); ok {
-			if v := info.Main.Version; v != "" && v != "(devel)" {
-				version = v
+		if exe, err := os.Executable(); err == nil {
+			if bi, err := buildinfo.ReadFile(exe); err == nil {
+				if v := bi.Main.Version; v != "" && v != "(devel)" {
+					version = v
+				}
 			}
 		}
 	}
