@@ -1,0 +1,15 @@
+project_name: orion
+version: 0.1.0
+
+metadata:
+  owner: myth-tools
+  repo: orion
+  description: "Fast, multi-threaded subdomain enumeration tool combining passive intelligence from multiple passive sources with active DNS brute-forcing, permutation engines, and NSEC zone walking."
+  homepage: "https://github.com/myth-tools/orion"
+  repository: "https://github.com/myth-tools/orion"
+  issue_tracker: "https://github.com/myth-tools/orion/issues"
+  documentation: "https://github.com/myth-tools/orion#readme"
+  license: "MIT"
+  author: Shesher Hasan
+  author_email: contact@shesher.work.gd
+  organization: MYTH Org
